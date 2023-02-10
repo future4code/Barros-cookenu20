@@ -1,11 +1,17 @@
-import { CustomError, RecipeNotFound } from "../error/customError";
-import { recipe, RecipeInputDTO } from "../model/recipe";
-import { RecipeRepository } from "./RecipeRepository";
+import { RecipeDatabase } from "../data/mySQL/RecipeDatabase";
+import { CustomError, RecipeNotFound, Unauthorized } from "../error/customError";
+import { InputRecipeDTO, recipe, RecipeInputDTO } from "../model/recipe";
+import { HashManager } from "../services/HashManager";
+import { IdGenerator } from "../services/IdGenerator";
+import { TokenGenerator } from "../services/TokenGenerator";
+
+const idGenerator = new IdGenerator()
+const tokenGenerator = new TokenGenerator()
+const recipeDatabase = new RecipeDatabase();
+const hashManager = new HashManager()
+
 
 export class RecipeBusiness {
-
-  constructor(private recipeDatabase:RecipeRepository) {}
-
    
 //CRIA RECEITA
 
@@ -25,7 +31,7 @@ export class RecipeBusiness {
             authorId
            }
            
-      await this.recipeDatabase.insertRecipe(recipe)
+      await recipeDatabase.insertRecipe(recipe)
   } catch (error:any) {
       throw new CustomError(error.statusCode, error.message)
    }
@@ -33,16 +39,29 @@ export class RecipeBusiness {
 
 //BUSCA RECEITA POR ID
 
-  public getRecipe = async (id: string) => {
+  public getRecipe = async (id: string, input:InputRecipeDTO) => {
 
-      try {      
+      try {
+        const {token} = input
     
-      const recipeSelected = await this.recipeDatabase.getRecipe(id)
+        if (!token) {
+          throw new CustomError(400, 'Informe o token');
+      }
+    
+      const data = tokenGenerator.tokenData(token)
+    
+      if (!data.id) {
+          throw new Unauthorized()
+      }
+      
+      await recipeDatabase.getRecipe(data.id); 
+
+      const recipeSelected = await recipeDatabase.getRecipe(id)
       
       if(!recipeSelected[0]){
         throw new RecipeNotFound
       }
-
+            
       const result = {
         id:recipeSelected[0].id,
         title:recipeSelected[0].title,
@@ -51,7 +70,7 @@ export class RecipeBusiness {
         authorId:recipeSelected[0].authorId,
       }
       return recipeSelected;
-       
+      
     } catch (error: any) {
        throw new CustomError(error.statusCode, error.message)
 
@@ -60,10 +79,23 @@ export class RecipeBusiness {
 
 //BUSCA TODOS OS POSTS
 
- public getAllRecipes = async () => {
+ public getAllRecipes = async (input:InputRecipeDTO) => {
 
     try {      
-    return await this.recipeDatabase.getAllRecipes()
+      const {token} = input
+    
+      if (!token) {
+        throw new CustomError(400, 'Informe o token');
+    }
+  
+    const data = tokenGenerator.tokenData(token)
+  
+    if (!data.id) {
+        throw new Unauthorized()
+    }
+    
+    await recipeDatabase.getRecipe(data.id); 
+    return await recipeDatabase.getAllRecipes()
   
   } catch (error: any) {
      throw new CustomError(error.statusCode, error.message)

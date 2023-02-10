@@ -8,9 +8,9 @@ export const recipeRouter = express.Router()
 
 const recipeDatabase  = new RecipeDatabase()
 
-const recipeBusiness = new RecipeBusiness(recipeDatabase)
+const recipeBusiness = new RecipeBusiness()
 
-const recipeController = new RecipeController(recipeBusiness)
+const recipeController = new RecipeController()
 
 recipeRouter.get("/getAll",recipeController.getAllRecipes)
 

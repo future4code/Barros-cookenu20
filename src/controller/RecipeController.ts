@@ -1,10 +1,16 @@
 import { Request, Response } from "express";
 import { RecipeBusiness } from "../business/RecipeBusiness";
 import { RecipeInputDTO } from "../model/recipe";
+import { InputProfileDTO } from "../model/user";
+
+
+const recipeBusiness = new RecipeBusiness();
 
 export class RecipeController {
 
-  constructor(private recipeBusiness: RecipeBusiness) { }
+
+
+  //constructor(private recipeBusiness: RecipeBusiness) { }
 
   //CRIA RECEITA
 
@@ -19,7 +25,7 @@ export class RecipeController {
         authorId,
       };
 
-      await this.recipeBusiness.createRecipe(input);
+      await recipeBusiness.createRecipe(input);
       
       res.status(201).send(`Receita cadastrada: ${(input.title)} - ${(input.description)}`);
     } catch (error: any) {
@@ -35,7 +41,11 @@ export class RecipeController {
     try {
       const id = req.params.id
 
-      const recipes = await this.recipeBusiness.getRecipe(id)
+      const input : InputProfileDTO = {
+        token: req.headers.authorization as string
+        }
+
+      const recipes = await recipeBusiness.getRecipe(id,input)
 
       res.status(201).send(recipes)
     } catch (error: any) {
@@ -50,7 +60,10 @@ export class RecipeController {
     try {
       const id = req.params.id
 
-      const recipes = await this.recipeBusiness.getAllRecipes()
+      const input : InputProfileDTO = {
+        token: req.headers.authorization as string
+        }
+      const recipes = await recipeBusiness.getAllRecipes(input)
 
       res.status(201).send(recipes)
     } catch (error: any) {

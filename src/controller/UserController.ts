@@ -54,14 +54,15 @@ export class UserController {
     }
 };
 
-public getProfile = async (req: Request, res: Response): Promise<void> => {
+public getProfile = async (req: Request, res: Response) => {
   try {
     const input : InputProfileDTO = {
     token: req.headers.authorization as string
     }
     const user = await userBusiness.getProfile(input)
+   // return user
 
-      res.status(200).send({ message: "Perfil do Usuário:", user});
+      res.status(200).send(user);
   } catch (error: any) {
     res.status(error.statusCode || 400).send(error.message || error.sqlMessage)
   }

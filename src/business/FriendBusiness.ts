@@ -1,5 +1,5 @@
 import { FriendDatabase } from "../data/mySQL/FriendDatabase";
-import { CustomError, UserNotFound } from "../error/customError";
+import { CustomError } from "../error/customError";
 import { delFriend, DelFriendDTO, friend, FriendInputDTO } from "../model/friend";
 
 const friendDatabase = new FriendDatabase();

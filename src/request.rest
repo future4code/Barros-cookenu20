@@ -18,17 +18,48 @@ GET http://localhost:3306/user/login
 Content-Type: application/json
 
 {
-    "email": "deia@labenu.com",
-    "password": "987654"
+    "email": "samuca@labenu.com",
+    "password": "123456"
 }
 
-//BUSCAR PERFIL
+//BUSCAR PERFIL - OK
 
 ####
 GET http://localhost:3306/user/profile
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NTk5MTY4MSwiZXhwIjoxNjc1OTk1MjgxfQ.2hdN7ctQjS8Qr5RDCUwjnBP6zIz59EclW8IjF_Q7WJo
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjA2ODc5NSwiZXhwIjoxNjc2MDcyMzk1fQ.LB5MpQbJv9eRDQlWhsrjoyEKd67iOpwTKPyr4EpJ2Jk
 
+
+
+//CRIA AMIZADE
+
+###
+POST http://localhost:3306/user/1674763316671
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjAyODA2NywiZXhwIjoxNjc2MDMxNjY3fQ.fVxrLPt9mRCmhgCdJRcC2ah2JNOPGNAn-ENS-b_qoIY
+
+
+
+//BUSCA RECEITA POR ID - OK
+
+####
+GET http://localhost:3306/recipe/get/1675955467898
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjA3MzE4NCwiZXhwIjoxNjc2MDc2Nzg0fQ.8QRIp8OJaOoSAS4rLENo-N5lt9BDWKrfH-zOHqhTONY
+
+
+//CRIA RECEITA  !!! INCLUIR TOKEN   !!! author_id = NULL
+
+###
+POST http://localhost:3306/recipe
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjA2ODc5NSwiZXhwIjoxNjc2MDcyMzk1fQ.LB5MpQbJv9eRDQlWhsrjoyEKd67iOpwTKPyr4EpJ2Jk
+
+{
+    "title": "PÃO COM TAIO",
+    "description": "Pegue um pão francês e dê um táio no meio dele com uma faca.",
+    "author_id":"1675946471963"
+}
 
 
 
@@ -55,49 +86,23 @@ Content-Type: application/json
 
 
 
-//CRIA RECEITA  !!! INCLUIR TOKEN   !!! author_id = NULL
-
-###
-POST http://localhost:3306/recipe
-Content-Type: application/json
-
-{
-    "title": "PÃO COM TAIO",
-    "description": "Pegue um pão francês e dê um táio no meio dele com uma faca.",
-    "author_id":"1675946471963"
-}
-
-
-
-
-//BUSCA POR ID DO POST - OK
-
-####
-GET http://localhost:3306/recipe/get/1675955467898
-Content-Type: application/json
 
 
 
 
 
-//BUSCA TODOS AS RECEITAS - OK
+
+
+
+
+
+//BUSCA TODOS AS RECEITAS COM TOKEN - OK
 
 ####
 GET http://localhost:3306/recipe/getAll
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjA3MzE4NCwiZXhwIjoxNjc2MDc2Nzg0fQ.8QRIp8OJaOoSAS4rLENo-N5lt9BDWKrfH-zOHqhTONY
 
-
-
-
-//CRIA AMIZADE
-
-###
-POST http://localhost:3306/friend/create
-Content-Type: application/json
-
-{
-    "friendId":"1674763316671"
-}
 
 
 

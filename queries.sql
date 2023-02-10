@@ -18,7 +18,7 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    IF NOT EXISTS labook_friends(
+    IF NOT EXISTS cookenu_friends(
         id VARCHAR(255) PRIMARY KEY,
         friend VARCHAR(255) NOT NULL
     );

@@ -97,7 +97,6 @@ public getProfile = async (input:InputProfileDTO):Promise<string> => {
 
   try {
     const {token} = input
-
     
     if (!token) {
       throw new CustomError(400, 'Informe o token');
@@ -108,7 +107,7 @@ public getProfile = async (input:InputProfileDTO):Promise<string> => {
   if (!data.id) {
       throw new Unauthorized()
   }
-    console.log(data)
+
    return await userDatabase.getProfile(data.id);
 
   } catch (error: any) {

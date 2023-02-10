@@ -45,7 +45,7 @@ export class UserDatabase extends BaseDatabase {
 
                  try {
                 const result = await UserDatabase.connection("cookenu_users")
-                    .select()
+                    .select('id','name','email')
                     .where({id: token })
                     return result[0];
             } catch (error: any) {

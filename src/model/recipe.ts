@@ -17,3 +17,7 @@ export interface RecipeInputDTO {
    createdAt: Date,
    authorId: string
 }
+
+export interface InputRecipeDTO {
+   token: string
+}

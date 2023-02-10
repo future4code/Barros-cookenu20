@@ -11,7 +11,7 @@ export class FriendDatabase extends BaseDatabase {
           id: friend.id,
           friend: friend.friendId
         })
-        .into("labook_friends");
+        .into("cookenu_friends");
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message);
     }
@@ -19,7 +19,7 @@ export class FriendDatabase extends BaseDatabase {
 
   public findFriend = async (id: FriendInputDTO) => {
     try {
-      const result = await FriendDatabase.connection("labook_friends")
+      const result = await FriendDatabase.connection("cookenu_friends")
         .select()
         .where("friend", id.friendId);
       return result[0];
@@ -34,7 +34,7 @@ export class FriendDatabase extends BaseDatabase {
       await FriendDatabase.connection
         .delete(friend.friendId)
         .where("friend", friend.friendId)
-        .into("labook_friends")
+        .into("cookenu_friends")
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message);
     }
@@ -46,7 +46,7 @@ export class FriendDatabase extends BaseDatabase {
     try {
       const allFriends = await FriendDatabase.connection
         .select()
-        .from("labook_friends")
+        .from("cookenu_friends")
       return allFriends;
 
     } catch (error: any) {

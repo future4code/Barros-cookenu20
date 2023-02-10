@@ -9,9 +9,9 @@ const friendDatabase  = new FriendDatabase()
 
 const friendBusiness = new FriendBusiness()
 
-const friendController = new FriendController(friendBusiness)
+const friendController = new FriendController()
 
-friendRouter.post('/create', friendController.createFriendship)
+friendRouter.post('/user/:id', friendController.createFriendship)
 
 friendRouter.delete('/delete', friendController.deleteFriendship)
 
