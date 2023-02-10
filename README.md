@@ -1,8 +1,8 @@
-# _NWFS: LaBook_
+# _COOKENU_
 
 ## ⌨️ `Descrição do Projeto`
 ```
-O LaBook será uma rede social com o objetivo de promover a conexão e interação entre seus mais diversos usuários. Os usuários podem criar posts de dois tipos ("evento" ou "normal"), comentá-los e curti-los também. O desenvolvedor do frontend acha que é bastante experiente; dessa forma, já preparou uma lista de todos os endpoints que serão necessários para o projeto e foi adiantando o desenvolvimento enquanto você não chegava. Mas, alguns dos endpoints acabaram por ser feitos na pressa e estão um tanto desestrurados, e sem nenhum tipo de tratamento ou modelagem de dado.
+
 ```
 <br>
 
@@ -10,31 +10,22 @@ O LaBook será uma rede social com o objetivo de promover a conexão e interaç�
 ```
 → Cadastrar usuário
 
-→ Criar post
 
-→ Criar Turma
 
-→ Buscar um post por id
-
-→ Fazer amizade
-
-→ Desfazer Amizade
-
-→ Ver todo o Feed
 
 ```
 <br>
 
 ## 📋 `Documentação do Postman`
 
-[<sub>Link do Postman</sub>](https://documenter.getpostman.com/view/24706667/2s8Z73xqeP) 
+[<sub>Link do Postman</sub>](https://documenter.getpostman.com) 
 
 <br>
 
 ## 🖇️ `Deploy`
 ### Links do Render
 
-[<sub>Labook</sub>](https://labook-7e7p.onrender.com) 
+[<sub>Labook</sub>](https://) 
 
 <br>
 
@@ -51,5 +42,3 @@ O LaBook será uma rede social com o objetivo de promover a conexão e interaç�
 <br>
 
 ## 📌 `Conclusão`
-
-Deseenvolvimneto de projeto seguindo orientções para arquitetura limpa de software, priorizando segurança e organização de responsabilidades.
