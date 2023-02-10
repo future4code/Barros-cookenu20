@@ -1,0 +1,122 @@
+//CRIA USUARIO - OK
+
+####
+POST http://localhost:3306/user/signup
+Content-Type: application/json
+
+{
+    "name": "Samuel",
+    "email": "samuca@labenu.com",
+    "password": "123456"
+}
+
+
+//FAZER LOGIN - OK
+
+####
+GET http://localhost:3306/user/login
+Content-Type: application/json
+
+{
+    "email": "deia@labenu.com",
+    "password": "987654"
+}
+
+//BUSCAR PERFIL
+
+####
+GET http://localhost:3306/user/profile
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NTk5MTY4MSwiZXhwIjoxNjc1OTk1MjgxfQ.2hdN7ctQjS8Qr5RDCUwjnBP6zIz59EclW8IjF_Q7WJo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BUSCA TODOS USUARIOS - OK
+
+####
+GET http://localhost:3306/user/getAll
+Content-Type: application/json
+
+
+
+//CRIA RECEITA  !!! INCLUIR TOKEN   !!! author_id = NULL
+
+###
+POST http://localhost:3306/recipe
+Content-Type: application/json
+
+{
+    "title": "PÃO COM TAIO",
+    "description": "Pegue um pão francês e dê um táio no meio dele com uma faca.",
+    "author_id":"1675946471963"
+}
+
+
+
+
+//BUSCA POR ID DO POST - OK
+
+####
+GET http://localhost:3306/recipe/get/1675955467898
+Content-Type: application/json
+
+
+
+
+
+//BUSCA TODOS AS RECEITAS - OK
+
+####
+GET http://localhost:3306/recipe/getAll
+Content-Type: application/json
+
+
+
+
+//CRIA AMIZADE
+
+###
+POST http://localhost:3306/friend/create
+Content-Type: application/json
+
+{
+    "friendId":"1674763316671"
+}
+
+
+
+
+
+//DESFAZ AMIZADE
+
+###
+DELETE  http://localhost:3306/friend/delete
+Content-Type: application/json
+
+{
+    "friendId":"1674763316671"
+}
+
+
+
+//BUSCAR TODOS OS AMIGOS
+
+####
+GET http://localhost:3306/friend/getAll
+Content-Type: application/json
