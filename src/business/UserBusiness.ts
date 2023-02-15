@@ -52,67 +52,102 @@ export class UserBusiness {
     }
   };
 
-  public getUsers = async () => {
+  public login = async (input: LoginInputDTO): Promise<string> => {
     try {
-      return await userDatabase.getUsers();
+      const { email, password } = input;
+
+      if (!email || !password) {
+        throw new CustomError(400, 'Preencha os campos "email" e "password"');
+      }
+
+      if (!email.includes("@")) {
+        throw new InvalidEmail();
+      }
+
+      const user = await userDatabase.findUser(email);
+
+      if (!user) {
+        throw new UserNotFound()
+      }
+
+      const compareResult: boolean = await hashManager.compareHash(password, user.password)
+
+      if (!compareResult) {
+        throw new InvalidPassword()
+      }
+
+      const token = tokenGenerator.generateToken(user.id)
+
+      return token
+    } catch (error: any) {
+      throw new CustomError(400, error.message);
+    }
+  };
+
+  public getProfile = async (input: InputProfileDTO): Promise<string> => {
+
+    try {
+      const { token } = input
+
+      if (!token) {
+        throw new CustomError(400, 'Informe o token');
+      }
+
+      const data = tokenGenerator.tokenData(token)
+
+      if (!data.id) {
+        throw new Unauthorized()
+      }
+
+      return await userDatabase.getProfile(data.id);
 
     } catch (error: any) {
       throw new CustomError(error.statusCode, error.message)
     }
-  }
+  };
 
-  public login = async (input: LoginInputDTO): Promise<string> => {
+  public getUser = async (id: string, input: InputProfileDTO) => {
+
     try {
-        const { email, password } = input;
+      const { token } = input
 
-        if (!email || !password) {
-            throw new CustomError(400, 'Preencha os campos "email" e "password"');
-        }
+      if (!token) {
+        throw new CustomError(400, 'Informe o token');
+      }
 
-        if (!email.includes("@")) {
-            throw new InvalidEmail();
-        }
+      const data = tokenGenerator.tokenData(token)
 
-        const user = await userDatabase.findUser(email);
+      if (!data.id) {
+        throw new Unauthorized()
+      }
 
-        if (!user) {
-            throw new UserNotFound()
-        }
+      await userDatabase.getUser(data.id);
 
-        const compareResult: boolean = await hashManager.compareHash(password, user.password)
+      const userSelected = await userDatabase.getUser(id)
 
-        if (!compareResult) {
-            throw new InvalidPassword()
-        }
+      if (!userSelected[0]) {
+        throw new UserNotFound
+      }
 
-        const token = tokenGenerator.generateToken(user.id)
+      const result = {
+        id: userSelected[0].id,
+        name: userSelected[0].name,
+        email: userSelected[0].email,
+      }
+      return userSelected;
 
-        return token
     } catch (error: any) {
-        throw new CustomError(400, error.message);
+      throw new CustomError(error.statusCode, error.message)
+
     }
-};
-
-public getProfile = async (input:InputProfileDTO):Promise<string> => {
-
-  try {
-    const {token} = input
-    
-    if (!token) {
-      throw new CustomError(400, 'Informe o token');
   }
+  // public getAllUsers = async () => {
+  //   try {
+  //     return await userDatabase.getAllUsers();
 
-  const data = tokenGenerator.tokenData(token)
-
-  if (!data.id) {
-      throw new Unauthorized()
-  }
-
-   return await userDatabase.getProfile(data.id);
-
-  } catch (error: any) {
-    throw new CustomError(error.statusCode, error.message)
-  }
-};
+  //   } catch (error: any) {
+  //     throw new CustomError(error.statusCode, error.message)
+  //   }
+  // }
 
 }

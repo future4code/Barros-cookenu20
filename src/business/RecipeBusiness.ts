@@ -20,15 +20,17 @@ export class RecipeBusiness {
       let message = "Success!"
 
       const {title, description, createdAt, authorId} = input
-
-      const recipeId: string = Date.now().toString()
+          
+      const data = tokenGenerator.tokenData(authorId)
+      
+      const id: string = idGenerator.generateId()
       
       const recipe:recipe = {
-            id:recipeId,            
+            id,            
             title,
             description,
             createdAt,
-            authorId
+            authorId:data.id
            }
            
       await recipeDatabase.insertRecipe(recipe)

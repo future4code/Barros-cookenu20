@@ -8,8 +8,6 @@ const recipeBusiness = new RecipeBusiness();
 
 export class RecipeController {
 
-
-
   //constructor(private recipeBusiness: RecipeBusiness) { }
 
   //CRIA RECEITA
@@ -18,11 +16,15 @@ export class RecipeController {
     try {
       const { title, description, createdAt, authorId } = req.body;
 
+      const idUser : InputProfileDTO = {
+        token: req.headers.authorization as string
+        }
+
       const input: RecipeInputDTO = {
         title,
         description,
         createdAt,
-        authorId,
+        authorId:idUser.token,
       };
 
       await recipeBusiness.createRecipe(input);

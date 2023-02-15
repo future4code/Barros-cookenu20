@@ -11,10 +11,13 @@ const userBusiness = new UserBusiness()
 
 const userController = new UserController()
 
-userRouter.get("/getAll",userController.getUsers)
 
-userRouter.post('/signup', userController.createUser)
+userRouter.post("/signup", userController.createUser)
 
 userRouter.get("/login",userController.login)
 
 userRouter.get("/profile",userController.getProfile)
+
+userRouter.get("/:id",userController.getUser)
+
+//userRouter.get("/getAll",userController.getAllUsers)

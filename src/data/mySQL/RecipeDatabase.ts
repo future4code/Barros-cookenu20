@@ -29,9 +29,10 @@ export class RecipeDatabase extends BaseDatabase implements RecipeRepository {
     public getRecipe = async (idRecipe: string): Promise<recipe[]> => {
         try {
             const recipe = await RecipeDatabase.connection
-                .select("title", "description")
+                .select("id","title", "description","created_at")
                 .from("cookenu_recipes")
-                .where("id", idRecipe)
+                .where("author_id", idRecipe)
+                .orderBy("created_at", "desc")
             return recipe;
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message);
