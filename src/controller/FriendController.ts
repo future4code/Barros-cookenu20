@@ -8,40 +8,40 @@ const friendDatabase = new FriendDatabase
 
 export class FriendController {
 
-    public createFriendship = async (req: Request, res: Response) => {
-    try {
-      const { friendId } = req.params;
+  //   public createFriendship = async (req: Request, res: Response) => {
+  //   try {
+  //     const { friendId } = req.body;
 
-      const input: FriendInputDTO = {
+  //     const input: FriendInputDTO = {
 
-        friendId
-      };
+  //       friendId
+  //     };
 
-      await friendBusiness.createFriendship(input);
+  //     await friendBusiness.createFriendship(input);
 
-      res.status(201).send({ message: "Amizade criada!" });
-    } catch (error: any) {
-      res.status(400).send(error.message);
-    }
+  //     res.status(201).send({ message: "Amizade criada!" });
+  //   } catch (error: any) {
+  //     res.status(400).send(error.message);
+  //   }
 
-  };
+  // };
 
-  public deleteFriendship = async (req: Request, res: Response) => {
-    try {
-      const { friendId } = req.params;
+  // public deleteFriendship = async (req: Request, res: Response) => {
+  //   try {
+  //     const { friendId } = req.params;
 
-      const input: DelFriendDTO = {
-        friendId
-      };
+  //     const input: DelFriendDTO = {
+  //       friendId
+  //     };
 
-      await friendBusiness.deleteFriend(input);
-      res.status(201).send({ message: "Amizade desfeita!" });
-    } catch (error: any) {
-      res.status(400).send(error.message);
-    }
-  };
+  //     await friendBusiness.deleteFriend(input);
+  //     res.status(201).send({ message: "Amizade desfeita!" });
+  //   } catch (error: any) {
+  //     res.status(400).send(error.message);
+  //   }
+  // };
 
-  //BUSCA POST DE AMIGOS
+  //BUSCA RECEITA DE AMIGOS
 
   public getAllFriends = async (req: Request, res: Response): Promise<void> => {
 
@@ -49,9 +49,9 @@ export class FriendController {
       const id = req.params.id
       console.log(id)
 
-      const posts = await friendBusiness.getAllFriends()
+      const recipes = await friendBusiness.getAllFriends()
 
-      res.status(201).send(posts)
+      res.status(201).send(recipes)
     } catch (error: any) {
       res.status(error.statusCode || 400).send(error.message || error.sqlMessage)
     }

@@ -17,17 +17,18 @@ Content-Type: application/json
 GET http://localhost:3306/user/login
 Content-Type: application/json
 
-{
-    "email": "samuca@labenu.com",
-    "password": "123456"
-}
+    {
+        "email": "samuca@labenu.com",
+        "password": "123456"
+    }
+
 
 // 3 - INFORMAÇÕES DO PERFIL - OK
 
 ####
 GET http://localhost:3306/user/profile
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMtNGZkYy05YzUwLWYyYTQzZjFhMjc5NCIsImlhdCI6MTY3NjQyMTU2NywiZXhwIjoxNjc2NDI1MTY3fQ.3MdXtHMd3Y-t9rgkDtDwuoc9QNsf5LGbG09_dX5_tAA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwNjM5MSwiZXhwIjoxNjc2NTA5OTkxfQ.3WQs5Z92HIBjO3VYfjyQuGs95tXKG168kK1oR7G48L0
 
 
 
@@ -36,13 +37,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMt
 ###
 POST http://localhost:3306/recipe
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMtNGZkYy05YzUwLWYyYTQzZjFhMjc5NCIsImlhdCI6MTY3NjQyMTU2NywiZXhwIjoxNjc2NDI1MTY3fQ.3MdXtHMd3Y-t9rgkDtDwuoc9QNsf5LGbG09_dX5_tAA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwNjM5MSwiZXhwIjoxNjc2NTA5OTkxfQ.3WQs5Z92HIBjO3VYfjyQuGs95tXKG168kK1oR7G48L0
 
 {
     "title": "Broa",
     "description": "Fuba, leite e fogão de lenha",
     "author_id":"0fcd21e8-c187-4f9e-b200-033ce842dc72"
 }
+
 
 // 5 - SEGUIR USUÁRIO
 ####
@@ -55,10 +57,31 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMt
 ####
 GET http://localhost:3306/recipe/d74c9a0d-4b2c-4fdc-9c50-f2a43f1a2794
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMtNGZkYy05YzUwLWYyYTQzZjFhMjc5NCIsImlhdCI6MTY3NjQyMTU2NywiZXhwIjoxNjc2NDI1MTY3fQ.3MdXtHMd3Y-t9rgkDtDwuoc9QNsf5LGbG09_dX5_tAA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwMTczNywiZXhwIjoxNjc2NTA1MzM3fQ.TSA3QcpMibm9qY5V5tDGzLO2DrcApbvoPopVnbheM2Y
 
 
+//EXTRA - SEGUIR USUARIO - OK
 
+###
+POST http://localhost:3306/user/follow
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwNjM5MSwiZXhwIjoxNjc2NTA5OTkxfQ.3WQs5Z92HIBjO3VYfjyQuGs95tXKG168kK1oR7G48L0
+
+{
+   "friendId": ""
+}
+
+
+//DESFAZ AMIZADE - OK
+
+###
+DELETE  http://localhost:3306/user/unfollow
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwOTA0MywiZXhwIjoxNjc2NTEyNjQzfQ.ZDFazt82dAvcjskdEKd94uHhLZ8Ys9J3iaIiGfvdSRM
+
+{
+    "friendId":"1674763316671"
+}
 
 
 
@@ -87,6 +110,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODct
 ####
 GET http://localhost:3306/user/getAll
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwNjM5MSwiZXhwIjoxNjc2NTA5OTkxfQ.3WQs5Z92HIBjO3VYfjyQuGs95tXKG168kK1oR7G48L0
+
 
 //CRIA AMIZADE
 

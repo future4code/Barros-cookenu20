@@ -2,23 +2,24 @@
 
 ## ⌨️ `Descrição do Projeto`
 ```
-
+Esse produto nada mais é do que uma rede social, na qual os usuários podem dividir informações relevantes sobre comidas e receitas que tenham experimentado. Ela possui todas as funcionalidades mais comuns em redes sociais.
 ```
 <br>
 
 ## ⚙️ `Funcionalidades do projeto`
 ```
-→ Cadastrar usuário
-
-
-
-
+→ Cadastro / Criar Pessoa Usuário
+→ Login
+→ Informações do próprio perfil
+→ Criar receitas
+→ Seguir usuário
+→ Feed
 ```
 <br>
 
 ## 📋 `Documentação do Postman`
 
-[<sub>Link do Postman</sub>](https://documenter.getpostman.com) 
+[<sub>Link do Postman</sub>](https://documenter.getpostman.com/view/22363573/2s93CExca3) 
 
 <br>
 

@@ -120,8 +120,54 @@ Saída: Body
 	"cratedAt": "31/12/2020"
 }
 ```
-# [ _ ] - Readme
+# EXTRA - Seguir Usuário
 
-# [ _ ] - Documentação Postman
+[ X ] Você deve verificar se o id do usuário é válido (se não está vazio ou se não foi enviado)
+
+```
+Método: POST
+Path: `/user/follow`
+
+Entradas:
+Authorization: "token de autenticação"
+Body
+{
+	"userToFollowId": "id do usuário que se deseja seguir"
+}
+
+Saída:
+Body
+{
+	"message": "Followed successfully"
+}
+
+```
+
+# EXTRA - Deixar de Seguir Usuário
+
+[ X ] Você deve verificar se o id do usuário é válido (se não está vazio ou se não foi enviado)
+
+```
+Método: POST
+Path: `/user/unfollow`
+
+Entradas:
+Authorization: "token de autenticação"
+Body
+{
+	"userToFollowId": "id do usuário que se deseja deixar de seguir"
+}
+
+Saída:
+Body
+{
+	"message": "Unfollowed successfully"
+}
+
+```
+
+# [  ] - Readme  !!! Incluir link do deploy
+
+# [ X ] - Documentação Postman - OK (apenas manter atualizado no Postman)
 
 # [ _ ] - Deploy

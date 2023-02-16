@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
 import { UserDatabase } from "../data/mySQL/UserDatabase";
-import { InputProfileDTO, LoginInputDTO, UserInputDTO } from "../model/user";
+import { FriendInputDTO } from "../model/friend";
+import { DelFriendDTO, InputProfileDTO, LoginInputDTO, UserInputDTO } from "../model/user";
 
 const userBusiness = new UserBusiness
 const userDatabase = new UserDatabase
@@ -17,7 +18,6 @@ export class UserController {
                 email,
                 password,
             };
-
             const token = await userBusiness.createUser(input);
 
             res.status(201).send({ message: "Usuário criado!", token });
@@ -58,13 +58,11 @@ export class UserController {
 
     public getUser = async (req: Request, res: Response): Promise<void> => {
         try {
-
             const id = req.params.id
 
             const input: InputProfileDTO = {
                 token: req.headers.authorization as string
             }
-
             const users = await userBusiness.getUser(id, input)
 
             res.status(201).send(users)
@@ -73,13 +71,49 @@ export class UserController {
         }
     };
 
-    // public getAllUsers = async (req: Request, res: Response): Promise<void> => {
-    //     try {
-    //         const users = await userBusiness.getAllUsers()
+    //CRIAR AMIZADE 
 
-    //         res.status(201).send(users)
-    //     } catch (error: any) {
-    //         res.status(error.statusCode || 400).send(error.message || error.sqlMessage)
-    //     }
-    // };
+    public createFriendship = async (req: Request, res: Response) => {
+        try {
+            const { friendId } = req.body;
+
+            const input: FriendInputDTO = {
+                friendId
+            };
+
+            await userBusiness.createFriendship(input);
+
+            res.status(201).send({ message: "Amizade criada!" });
+        } catch (error: any) {
+            res.status(400).send(error.message);
+        }
+    };
+
+    public deleteFriendship = async (req: Request, res: Response) => {
+        try {
+            const { friendId } = req.body;
+
+            const input: InputProfileDTO = {
+                token: req.headers.authorization as string
+            }
+            const inputFriend: DelFriendDTO = {
+                friendId
+            };
+
+            await userBusiness.deleteFriend(input, inputFriend);
+            res.status(201).send({ message: "Amizade desfeita!" });
+        } catch (error: any) {
+            res.status(400).send(error.message);
+        }
+    };
+
+    public getAllUsers = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const users = await userBusiness.getAllUsers()
+
+            res.status(201).send(users)
+        } catch (error: any) {
+            res.status(error.statusCode || 400).send(error.message || error.sqlMessage)
+        }
+    };
 }

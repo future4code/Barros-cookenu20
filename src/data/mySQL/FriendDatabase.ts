@@ -17,17 +17,17 @@ export class FriendDatabase extends BaseDatabase {
     }
   };
 
-  public findFriend = async (id: FriendInputDTO) => {
-    try {
-      const result = await FriendDatabase.connection("cookenu_friends")
-        .select()
-        .where("friend", id.friendId);
-      return result[0];
+  // public findFriend = async (id: FriendInputDTO) => {
+  //   try {
+  //     const result = await FriendDatabase.connection("cookenu_friends")
+  //       .select()
+  //       .where("friend", id.friendId);
+  //     return result[0];
 
-    } catch (error: any) {
-      throw new CustomError(400, error.message);
-    }
-  };
+  //   } catch (error: any) {
+  //     throw new CustomError(400, error.message);
+  //   }
+  // };
 
   public deleteFriend = async (friend: DelFriendDTO): Promise<void> => {
     try {

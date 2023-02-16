@@ -18,6 +18,10 @@ userRouter.get("/login",userController.login)
 
 userRouter.get("/profile",userController.getProfile)
 
+userRouter.get("/getAll",userController.getAllUsers)
+
 userRouter.get("/:id",userController.getUser)
 
-//userRouter.get("/getAll",userController.getAllUsers)
+userRouter.post("/follow", userController.createFriendship)
+
+userRouter.delete("/unfollow", userController.deleteFriendship)

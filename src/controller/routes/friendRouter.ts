@@ -11,9 +11,9 @@ const friendBusiness = new FriendBusiness()
 
 const friendController = new FriendController()
 
-friendRouter.post('/user/:id', friendController.createFriendship)
+//friendRouter.post('/follow', friendController.createFriendship)
 
-friendRouter.delete('/delete', friendController.deleteFriendship)
+//friendRouter.delete('/delete', friendController.deleteFriendship)
 
 friendRouter.get("/getAll",friendController.getAllFriends)
 

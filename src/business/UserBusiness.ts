@@ -1,6 +1,7 @@
 import { UserDatabase } from "../data/mySQL/UserDatabase";
 import { CustomError, InvalidEmail, InvalidName, InvalidPassword, Unauthorized, UserNotFound } from "../error/customError";
-import { InputProfileDTO, LoginInputDTO, user, UserInputDTO } from "../model/user";
+import { FriendInputDTO } from "../model/friend";
+import { delFriend, DelFriendDTO, friend, InputProfileDTO, LoginInputDTO, user, UserInputDTO } from "../model/user";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { TokenGenerator } from "../services/TokenGenerator";
@@ -141,13 +142,82 @@ export class UserBusiness {
 
     }
   }
-  // public getAllUsers = async () => {
-  //   try {
-  //     return await userDatabase.getAllUsers();
 
-  //   } catch (error: any) {
-  //     throw new CustomError(error.statusCode, error.message)
-  //   }
-  // }
+  //CRIAR AMIZADE 
+  
+  public createFriendship = async (input: FriendInputDTO) => {
+    try {
+    
+      const { friendId } = input
+
+      const idFriend = await userDatabase.findFriend(input);
+
+      if (!friendId) {
+        throw new CustomError(400, 'Informar ID dos amigos')
+      }
+
+      if (idFriend) {
+        throw new CustomError(400, 'Já é seu amigo!')
+      }
+
+     const id: string = idGenerator.generateId()
+
+      const friend: friend = {
+        id,
+        friendId
+      }
+      await userDatabase.insertFriend(friend);
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message)
+
+    }
+  };
+
+  public deleteFriend = async (inputToken:InputProfileDTO, input:DelFriendDTO): Promise<void> => {
+
+    try {
+      const { token } = inputToken
+
+      if (!token) {
+        throw new CustomError(400, 'Informe o token');
+      }
+
+      const data = tokenGenerator.tokenData(token)
+
+      if (!data.id) {
+        throw new Unauthorized()
+      }
+      
+      const { friendId } = input
+
+      const idFriend = await userDatabase.findFriend(input);
+
+      if (!idFriend) {
+        throw new CustomError(401, 'Você não tem esta amizade!')
+      }
+
+      if (!friendId) {
+        throw new CustomError(400, 'Informar ID a ser excluída')
+      }
+      const friend: delFriend = {
+        friendId
+      }
+
+      await userDatabase.deleteFriend(friend);
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message)
+
+    }
+  };
+
+
+  public getAllUsers = async () => {
+    try {
+      return await userDatabase.getAllUsers();
+
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message)
+    }
+  }
 
 }
