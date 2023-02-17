@@ -29,29 +29,29 @@ export class FriendDatabase extends BaseDatabase {
   //   }
   // };
 
-  public deleteFriend = async (friend: DelFriendDTO): Promise<void> => {
-    try {
-      await FriendDatabase.connection
-        .delete(friend.friendId)
-        .where("friend", friend.friendId)
-        .into("cookenu_friends")
-    } catch (error: any) {
-      throw new CustomError(error.statusCode, error.message);
-    }
-  };
+  // public deleteFriend = async (friend: DelFriendDTO): Promise<void> => {
+  //   try {
+  //     await FriendDatabase.connection
+  //       .delete(friend.friendId)
+  //       .where("friend", friend.friendId)
+  //       .into("cookenu_friends")
+  //   } catch (error: any) {
+  //     throw new CustomError(error.statusCode, error.message);
+  //   }
+  // };
 
-  //BUSCA TODOS OS AMIGOS
+  // //BUSCA TODOS OS AMIGOS
 
-  public getAllFriends = async (): Promise<friend[]> => {
-    try {
-      const allFriends = await FriendDatabase.connection
-        .select()
-        .from("cookenu_friends")
-      return allFriends;
+  // public getAllFriends = async (): Promise<friend[]> => {
+  //   try {
+  //     const allFriends = await FriendDatabase.connection
+  //       .select()
+  //       .from("cookenu_friends")
+  //     return allFriends;
 
-    } catch (error: any) {
-      throw new CustomError(error.statusCode, error.message);
-    }
-  };
+  //   } catch (error: any) {
+  //     throw new CustomError(error.statusCode, error.message);
+  //   }
+  // };
 
 }

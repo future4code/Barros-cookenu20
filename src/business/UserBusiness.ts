@@ -1,7 +1,9 @@
+import { RecipeDatabase } from "../data/mySQL/RecipeDatabase";
 import { UserDatabase } from "../data/mySQL/UserDatabase";
-import { CustomError, InvalidEmail, InvalidName, InvalidPassword, Unauthorized, UserNotFound } from "../error/customError";
+import { CustomError, InvalidEmail, InvalidName, InvalidPassword, InvaliRole, RecipeNotFound, Unauthorized, UserNotFound } from "../error/customError";
 import { FriendInputDTO } from "../model/friend";
-import { delFriend, DelFriendDTO, friend, InputProfileDTO, LoginInputDTO, user, UserInputDTO } from "../model/user";
+import { InputRecipeDTO } from "../model/recipe";
+import { delFriend, DelFriendDTO, friend, InputFeedDTO, InputProfileDTO, LoginInputDTO, user, UserInputDTO, UserRole } from "../model/user";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { TokenGenerator } from "../services/TokenGenerator";
@@ -11,14 +13,18 @@ const tokenGenerator = new TokenGenerator()
 const userDatabase = new UserDatabase();
 const hashManager = new HashManager()
 
+const recipeDatabase  = new RecipeDatabase()
+
+// CRIA USUARIO
+
 export class UserBusiness {
   public createUser = async (input: UserInputDTO): Promise<string> => {
     try {
-      let message = "Success!"
-      const { name, email, password } = input
+    //  let message = "Success!"
+      const { name, email, password, role } = input
 
-      if (!name || !email || !password) {
-        throw new CustomError(400, '"name", "email" e "password" devem ser informados')
+      if (!name || !email || !password || !role) {
+        throw new CustomError(400, '"name", "email", "password" e "role" devem ser informados')
       }
       if (name.length < 4) {
         throw new InvalidName();
@@ -36,15 +42,19 @@ export class UserBusiness {
 
       const hashPassword: string = await hashManager.generateHash(password)
 
+      if (role.toUpperCase()!=UserRole.ADMIN && role.toUpperCase()!=UserRole.NORMAL){
+        throw new InvaliRole();
+    }
       const user: user = {
         id,
         name,
         email,
-        password: hashPassword
+        password: hashPassword,
+        role
       }
       await userDatabase.insertUser(user);
 
-      const token = tokenGenerator.generateToken(id)
+      const token = tokenGenerator.generateToken({id, role})
       return token
 
     } catch (error: any) {
@@ -52,6 +62,8 @@ export class UserBusiness {
 
     }
   };
+
+  // LOGIN
 
   public login = async (input: LoginInputDTO): Promise<string> => {
     try {
@@ -77,13 +89,15 @@ export class UserBusiness {
         throw new InvalidPassword()
       }
 
-      const token = tokenGenerator.generateToken(user.id)
+      const token = tokenGenerator.generateToken({id:user.id, role:user.role})
 
       return token
     } catch (error: any) {
       throw new CustomError(400, error.message);
     }
   };
+
+  //BUSC PERFIL POR ID
 
   public getProfile = async (input: InputProfileDTO): Promise<string> => {
 
@@ -106,6 +120,8 @@ export class UserBusiness {
       throw new CustomError(error.statusCode, error.message)
     }
   };
+
+  //BUSCA USUARIO POR ID
 
   public getUser = async (id: string, input: InputProfileDTO) => {
 
@@ -173,6 +189,8 @@ export class UserBusiness {
     }
   };
 
+  // DESFAZ AMIZADE
+
   public deleteFriend = async (inputToken:InputProfileDTO, input:DelFriendDTO): Promise<void> => {
 
     try {
@@ -209,7 +227,8 @@ export class UserBusiness {
 
     }
   };
-
+  
+// BUSCA TODOS OS USUARIOS
 
   public getAllUsers = async () => {
     try {
@@ -219,5 +238,28 @@ export class UserBusiness {
       throw new CustomError(error.statusCode, error.message)
     }
   }
+
+  //BUSCA FEED
+  
+  public getFeed = async (input:InputFeedDTO): Promise<void> => {
+    try {
+      const { token } = input
+
+      if (!token) {
+        throw new CustomError(400, 'Informe o token');
+      }
+
+      const data = tokenGenerator.tokenData(token)
+
+      if (!data.id) {
+        throw new Unauthorized()
+      }
+
+      return await userDatabase.getProfile(data.id);
+
+    } catch (error: any) {
+      throw new CustomError(error.statusCode, error.message)
+    }
+  };
 
 }

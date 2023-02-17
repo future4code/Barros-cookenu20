@@ -65,17 +65,17 @@ export class FriendBusiness {
   //   }
   // };
 
-  //BUSCA TODOS OS AMIGOS
+  // //BUSCA TODOS OS AMIGOS
 
-  public getAllFriends = async () => {
+  // public getAllFriends = async () => {
 
-    try {
-      return await friendDatabase.getAllFriends()
+  //   try {
+  //     return await friendDatabase.getAllFriends()
 
-    } catch (error: any) {
-      throw new CustomError(error.statusCode, error.message)
+  //   } catch (error: any) {
+  //     throw new CustomError(error.statusCode, error.message)
 
-    }
-  }
+  //   }
+  // }
 
 }

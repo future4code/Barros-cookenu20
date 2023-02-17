@@ -1,19 +1,18 @@
 import { CustomError } from "../../error/customError";
-import { DelFriendDTO, friend, FriendInputDTO, user } from "../../model/user";
+import { RecipeOutputDTO } from "../../model/recipe";
+import { DelFriendDTO, friend, FriendInputDTO, InputFeedDTO, user } from "../../model/user";
 import { BaseDatabase } from "./BaseDatabase";
 import { FriendDatabase } from "./FriendDatabase";
+import { RecipeDatabase } from "./RecipeDatabase";
 
 export class UserDatabase extends BaseDatabase {
+
+// CRIAR USUARIO
 
     public insertUser = async (user: user) => {
         try {
             await UserDatabase.connection
-                .insert({
-                    id: user.id,
-                    name: user.name,
-                    email: user.email,
-                    password: user.password,
-                })
+                .insert(user)
                 .into("cookenu_users");
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message);
@@ -31,6 +30,8 @@ export class UserDatabase extends BaseDatabase {
         }
     };
 
+//BUSCA PERFIL POR ID
+
     public getProfile = async (token: string) => {
         try {
             const result = await UserDatabase.connection("cookenu_users")
@@ -41,6 +42,8 @@ export class UserDatabase extends BaseDatabase {
             throw new CustomError(400, error.message);
         }
     };
+
+//BUSCA USUARIO POR ID
 
     public getUser = async (idUser: string): Promise<user[]> => {
         try {
@@ -53,6 +56,8 @@ export class UserDatabase extends BaseDatabase {
             throw new CustomError(error.statusCode, error.message);
         }
     };
+
+// CRIAR AMIZADE
 
     public insertFriend = async (friend: friend): Promise<void> => {
         try {
@@ -67,6 +72,8 @@ export class UserDatabase extends BaseDatabase {
         }
     };
 
+//BUSCAR AMIGOS
+
     public findFriend = async (id: FriendInputDTO) => {
         try {
             const result = await UserDatabase.connection("cookenu_friends")
@@ -79,6 +86,7 @@ export class UserDatabase extends BaseDatabase {
         }
     };
 
+    //DESFAZ AMIZADE
 
     public deleteFriend = async (friend: DelFriendDTO): Promise<void> => {
         try {
@@ -91,6 +99,8 @@ export class UserDatabase extends BaseDatabase {
         }
     };
 
+//BUSCA TODOS OS USUARIOS
+
     public getAllUsers = async (): Promise<user[]> => {
         try {
             const allUsers = await UserDatabase.connection
@@ -99,6 +109,19 @@ export class UserDatabase extends BaseDatabase {
             return allUsers;
         } catch (error: any) {
             throw new CustomError(error.statusCode, error.message);
+        }
+    };
+
+ //BUSCA RECEITAS DE AMIGOS
+
+     public getFeed = async (token:string) => {
+        try {
+            const result = await UserDatabase.connection("cookenu_users")
+                .select('id', 'name', 'email')
+                .where({ id: token })
+            return result[0];
+        } catch (error: any) {
+            throw new CustomError(400, error.message);
         }
     };
 

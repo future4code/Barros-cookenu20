@@ -17,7 +17,7 @@ export class RecipeBusiness {
 
   public createRecipe = async (input: RecipeInputDTO) => {
     try {
-      let message = "Success!"
+     // let message = "Success!"
 
       const {title, description, createdAt, authorId} = input
           
@@ -104,5 +104,6 @@ export class RecipeBusiness {
   
       }
     }
+
 
 }

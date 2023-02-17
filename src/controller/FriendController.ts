@@ -41,20 +41,20 @@ export class FriendController {
   //   }
   // };
 
-  //BUSCA RECEITA DE AMIGOS
+  // //BUSCA RECEITA DE AMIGOS
 
-  public getAllFriends = async (req: Request, res: Response): Promise<void> => {
+  // public getAllFriends = async (req: Request, res: Response): Promise<void> => {
 
-    try {
-      const id = req.params.id
-      console.log(id)
+  //   try {
+  //     const id = req.params.id
+  //    // console.log(id)
 
-      const recipes = await friendBusiness.getAllFriends()
+  //     const recipes = await friendBusiness.getAllFriends()
 
-      res.status(201).send(recipes)
-    } catch (error: any) {
-      res.status(error.statusCode || 400).send(error.message || error.sqlMessage)
-    }
-  }
+  //     res.status(201).send(recipes)
+  //   } catch (error: any) {
+  //     res.status(error.statusCode || 400).send(error.message || error.sqlMessage)
+  //   }
+  // }
 
 }

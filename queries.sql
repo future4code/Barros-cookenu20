@@ -22,3 +22,6 @@ CREATE TABLE
         id VARCHAR(255) PRIMARY KEY,
         friend VARCHAR(255) NOT NULL
     );
+
+
+ALTER TABLE cookenu_users ADD role ENUM("ADMIN","NORMAL") NOT NULL DEFAULT "NORMAL";

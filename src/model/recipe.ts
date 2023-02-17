@@ -19,5 +19,15 @@ export interface RecipeInputDTO {
 }
 
 export interface InputRecipeDTO {
-   token: string
+   token: string,
 }
+
+export interface RecipeOutputDTO {
+   title: string,
+   description: string,
+   createdAt: Date,
+   authorId: string,
+   name: string
+}
+
+

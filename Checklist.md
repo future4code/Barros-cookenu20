@@ -166,6 +166,17 @@ Body
 
 ```
 
+# EXTRA - Criar mais um tipo de usuário
+
+[ X ] Agora, você deve adicionar na sua aplicação um role para representar o tipo de usuário. Faça as alterações necessárias no signup, login e geração do token
+
+```
+export enum UserRole{
+   ADMIN="ADMIN",
+   NORMAL="NORMAL"
+ }
+```
+
 # [  ] - Readme  !!! Incluir link do deploy
 
 # [ X ] - Documentação Postman - OK (apenas manter atualizado no Postman)

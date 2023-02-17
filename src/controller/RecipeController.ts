@@ -42,7 +42,6 @@ export class RecipeController {
 
     try {
       const id = req.params.id
-
       const input : InputProfileDTO = {
         token: req.headers.authorization as string
         }
@@ -55,12 +54,12 @@ export class RecipeController {
     }
   }
 
-  //BUSCA RECEITAS DE AMIGOS
+  //BUSCA TODAS AS RECEITAS
 
   public getAllRecipes = async (req: Request, res: Response): Promise<void> => {
 
     try {
-      const id = req.params.id
+     // const id = req.params.id
 
       const input : InputProfileDTO = {
         token: req.headers.authorization as string
@@ -72,4 +71,6 @@ export class RecipeController {
       res.status(error.statusCode || 400).send(error.message || error.sqlMessage)
     }
   }
+
+  
 }

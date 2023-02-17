@@ -1,10 +1,10 @@
-import { RecipeRepository } from "../../business/RRepository";
+//import { RecipeRepository } from "../../business/RRepository";
 import { CustomError } from "../../error/customError";
 import { recipe } from "../../model/recipe";
 import { BaseDatabase } from "./BaseDatabase";
 import { UserDatabase } from "./UserDatabase";
 
-export class RecipeDatabase extends BaseDatabase implements RecipeRepository {
+export class RecipeDatabase extends BaseDatabase {
 
     //CRIA RECEITA
 
@@ -52,20 +52,5 @@ export class RecipeDatabase extends BaseDatabase implements RecipeRepository {
         }
     };
 
-    //BUSCA RECEITAS DE AMIGOS
-
-    public getRecipesFriend = async (): Promise<recipe[]> => {
-
-        const idFriend = await UserDatabase.connection
-
-        try {
-            const allRecipes = await RecipeDatabase.connection
-                .select()
-                .from("cookenu_recipes")
-                .where("authorId",idFriend)
-            return allRecipes;
-        } catch (error: any) {
-            throw new CustomError(error.statusCode, error.message);
-        }
-    };
+ 
 }

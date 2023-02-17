@@ -5,9 +5,10 @@ POST http://localhost:3306/user/signup
 Content-Type: application/json
 
 {
-    "name": "Usuario",
-    "email": "user@labenu.com",
-    "password": "123456"
+    "name": "John Bidden",
+    "email": "president@labenu.com",
+    "password": "123456",
+    "role":"ADMIN"
 }
 
 
@@ -18,7 +19,7 @@ GET http://localhost:3306/user/login
 Content-Type: application/json
 
     {
-        "email": "samuca@labenu.com",
+        "email": "user@labenu.com",
         "password": "123456"
     }
 
@@ -28,7 +29,7 @@ Content-Type: application/json
 ####
 GET http://localhost:3306/user/profile
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwNjM5MSwiZXhwIjoxNjc2NTA5OTkxfQ.3WQs5Z92HIBjO3VYfjyQuGs95tXKG168kK1oR7G48L0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMtNGZkYy05YzUwLWYyYTQzZjFhMjc5NCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1OTYzNzUsImV4cCI6MTY3NjU5OTk3NX0.CEHYoVEu3hs_Uxc3Q8wuYf8TWNNQk2qo6bLIahn9DZQ
 
 
 
@@ -37,27 +38,27 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODct
 ###
 POST http://localhost:3306/recipe
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwNjM5MSwiZXhwIjoxNjc2NTA5OTkxfQ.3WQs5Z92HIBjO3VYfjyQuGs95tXKG168kK1oR7G48L0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkNDg5M2E2LWQ4YjItNGI2OC04NTViLTA0YzRiN2RjYTFlNiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NjU0ODAxNCwiZXhwIjoxNjc2NTUxNjE0fQ.soI2qWR-YX3DGxW1EVz3duU5LQEeuUX-36m6Jih5z44
 
 {
-    "title": "Broa",
-    "description": "Fuba, leite e fogão de lenha",
-    "author_id":"0fcd21e8-c187-4f9e-b200-033ce842dc72"
+    "title": "Rocambole",
+    "description": "Faz um bolo e enrola",
+    "author_id":"7d4893a6-d8b2-4b68-855b-04c4b7dca1e6"
 }
 
 
 // 5 - SEGUIR USUÁRIO
 ####
-GET http://localhost:3306/user/d74c9a0d-4b2c-4fdc-9c50-f2a43f1a2794
+GET http://localhost:3306/user/1675946504304
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMtNGZkYy05YzUwLWYyYTQzZjFhMjc5NCIsImlhdCI6MTY3NjQyMTU2NywiZXhwIjoxNjc2NDI1MTY3fQ.3MdXtHMd3Y-t9rgkDtDwuoc9QNsf5LGbG09_dX5_tAA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkNDg5M2E2LWQ4YjItNGI2OC04NTViLTA0YzRiN2RjYTFlNiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NjU0ODAxNCwiZXhwIjoxNjc2NTUxNjE0fQ.soI2qWR-YX3DGxW1EVz3duU5LQEeuUX-36m6Jih5z44
 
 
 // 6 - BUSCA RECEITAS POR ID DO USUÁRIO, COM TOKEN - OK
 ####
 GET http://localhost:3306/recipe/d74c9a0d-4b2c-4fdc-9c50-f2a43f1a2794
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwMTczNywiZXhwIjoxNjc2NTA1MzM3fQ.TSA3QcpMibm9qY5V5tDGzLO2DrcApbvoPopVnbheM2Y
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMtNGZkYy05YzUwLWYyYTQzZjFhMjc5NCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1OTM5NDgsImV4cCI6MTY3NjU5NzU0OH0.bV7-TuE_lkR_9LNxrLxhV6_5imj5iUtxX81YaGoUbwE
 
 
 //EXTRA - SEGUIR USUARIO - OK
@@ -65,27 +66,31 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODct
 ###
 POST http://localhost:3306/user/follow
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwNjM5MSwiZXhwIjoxNjc2NTA5OTkxfQ.3WQs5Z92HIBjO3VYfjyQuGs95tXKG168kK1oR7G48L0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1NTk0ODMsImV4cCI6MTY3NjU2MzA4M30.qJ0Z63c7L1lXhf_ibuN7qe9Xm8Tb4stBQrVwySNykDU
 
 {
-   "friendId": ""
+   "friendId": "914f9701-8d69-4271-8b20-e0caae53fc15"
 }
 
 
-//DESFAZ AMIZADE - OK
+//EXTRA - DESFAZ AMIZADE - OK
 
 ###
 DELETE  http://localhost:3306/user/unfollow
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwOTA0MywiZXhwIjoxNjc2NTEyNjQzfQ.ZDFazt82dAvcjskdEKd94uHhLZ8Ys9J3iaIiGfvdSRM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkNDg5M2E2LWQ4YjItNGI2OC04NTViLTA0YzRiN2RjYTFlNiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NjU0ODAxNCwiZXhwIjoxNjc2NTUxNjE0fQ.soI2qWR-YX3DGxW1EVz3duU5LQEeuUX-36m6Jih5z44
 
 {
-    "friendId":"1674763316671"
+    "friendId":"914f9701-8d69-4271-8b20-e0caae53fc15"
 }
 
 
+//BUSCAR FEED 
 
-
+####
+GET http://localhost:3306/user/feed
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMtNGZkYy05YzUwLWYyYTQzZjFhMjc5NCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1OTYzNzUsImV4cCI6MTY3NjU5OTk3NX0.CEHYoVEu3hs_Uxc3Q8wuYf8TWNNQk2qo6bLIahn9DZQ
 
 
 
@@ -97,12 +102,27 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODct
 
 //////////////////////         EXTRAS             //////////////////////  
 
-//BUSCA RECEITA POR ID - OK
+
+//BUSCAR AMIGOS 
 
 ####
-GET http://localhost:3306/recipe/get/1675955467898
+GET http://localhost:3306/user/friends/7d4893a6-d8b2-4b68-855b-04c4b7dca1e6
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjQxNjcxMSwiZXhwIjoxNjc2NDIwMzExfQ.JpWNbw8ssaR5C7RmkmR1J0tfiwD93MH8AjCyOIVBrrQ
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMtNGZkYy05YzUwLWYyYTQzZjFhMjc5NCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1NjA1ODcsImV4cCI6MTY3NjU2NDE4N30.rPqWmzt5k_UXhkzDtsOQ-TQRDfyUW-6JHC9qm9P_Img
+
+
+
+
+
+
+
+
+# //BUSCA RECEITA POR ID 
+
+# ####
+# GET http://localhost:3306/recipe/get/1675955467898
+# Content-Type: application/json
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkNDg5M2E2LWQ4YjItNGI2OC04NTViLTA0YzRiN2RjYTFlNiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NjU0ODAxNCwiZXhwIjoxNjc2NTUxNjE0fQ.soI2qWR-YX3DGxW1EVz3duU5LQEeuUX-36m6Jih5z44
 
 
 //BUSCA TODOS USUARIOS - OK
@@ -110,33 +130,29 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODct
 ####
 GET http://localhost:3306/user/getAll
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjUwNjM5MSwiZXhwIjoxNjc2NTA5OTkxfQ.3WQs5Z92HIBjO3VYfjyQuGs95tXKG168kK1oR7G48L0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkNDg5M2E2LWQ4YjItNGI2OC04NTViLTA0YzRiN2RjYTFlNiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NjU0ODAxNCwiZXhwIjoxNjc2NTUxNjE0fQ.soI2qWR-YX3DGxW1EVz3duU5LQEeuUX-36m6Jih5z44
 
 
-//CRIA AMIZADE
+# //CRIA AMIZADE
 
-###
-POST http://localhost:3306/user/1674763316671
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmY2QyMWU4LWMxODctNGY5ZS1iMjAwLTAzM2NlODQyZGM3MiIsImlhdCI6MTY3NjAyODA2NywiZXhwIjoxNjc2MDMxNjY3fQ.fVxrLPt9mRCmhgCdJRcC2ah2JNOPGNAn-ENS-b_qoIY
-
-
-//DESFAZ AMIZADE
-
-###
-DELETE  http://localhost:3306/friend/delete
-Content-Type: application/json
-
-{
-    "friendId":"1674763316671"
-}
+# ###
+# POST http://localhost:3306/user/1674763316671
+# Content-Type: application/json
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkNDg5M2E2LWQ4YjItNGI2OC04NTViLTA0YzRiN2RjYTFlNiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NjU0ODAxNCwiZXhwIjoxNjc2NTUxNjE0fQ.soI2qWR-YX3DGxW1EVz3duU5LQEeuUX-36m6Jih5z44
 
 
-//BUSCAR TODOS OS AMIGOS
+# //DESFAZ AMIZADE
 
-####
-GET http://localhost:3306/friend/getAll
-Content-Type: application/json
+# ###
+# DELETE  http://localhost:3306/friend/delete
+# Content-Type: application/json
+
+# {
+#     "friendId":"1674763316671"
+# }
+
+
+
 
 
 
@@ -145,6 +161,6 @@ Content-Type: application/json
 ####
 GET http://localhost:3306/recipe/getAll
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMtNGZkYy05YzUwLWYyYTQzZjFhMjc5NCIsImlhdCI6MTY3NjQyMTU2NywiZXhwIjoxNjc2NDI1MTY3fQ.3MdXtHMd3Y-t9rgkDtDwuoc9QNsf5LGbG09_dX5_tAA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ3NGM5YTBkLTRiMmMtNGZkYy05YzUwLWYyYTQzZjFhMjc5NCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1NzQ2OTAsImV4cCI6MTY3NjU3ODI5MH0.Y7kIkhcUK5WbK7zehlnj2032SBTNiJNebWrWLvOgd04
 
 

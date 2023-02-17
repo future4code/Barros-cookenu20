@@ -15,5 +15,5 @@ const friendController = new FriendController()
 
 //friendRouter.delete('/delete', friendController.deleteFriendship)
 
-friendRouter.get("/getAll",friendController.getAllFriends)
+//friendRouter.get("/getAll",friendController.getAllFriends)
 
