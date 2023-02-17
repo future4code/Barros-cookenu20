@@ -1,13 +1,11 @@
 import { CustomError } from "../../error/customError";
-import { RecipeOutputDTO } from "../../model/recipe";
-import { DelFriendDTO, friend, FriendInputDTO, InputFeedDTO, user } from "../../model/user";
+import { DelFriendDTO, friend, FriendInputDTO, user } from "../../model/user";
 import { BaseDatabase } from "./BaseDatabase";
-import { FriendDatabase } from "./FriendDatabase";
 import { RecipeDatabase } from "./RecipeDatabase";
 
 export class UserDatabase extends BaseDatabase {
 
-// CRIAR USUARIO
+    // CRIAR USUARIO
 
     public insertUser = async (user: user) => {
         try {
@@ -30,7 +28,7 @@ export class UserDatabase extends BaseDatabase {
         }
     };
 
-//BUSCA PERFIL POR ID
+    //BUSCA PERFIL POR ID
 
     public getProfile = async (token: string) => {
         try {
@@ -43,7 +41,7 @@ export class UserDatabase extends BaseDatabase {
         }
     };
 
-//BUSCA USUARIO POR ID
+    //BUSCA USUARIO POR ID
 
     public getUser = async (idUser: string): Promise<user[]> => {
         try {
@@ -57,7 +55,7 @@ export class UserDatabase extends BaseDatabase {
         }
     };
 
-// CRIAR AMIZADE
+    // CRIAR AMIZADE
 
     public insertFriend = async (friend: friend): Promise<void> => {
         try {
@@ -72,7 +70,7 @@ export class UserDatabase extends BaseDatabase {
         }
     };
 
-//BUSCAR AMIGOS
+    //BUSCAR AMIGOS
 
     public findFriend = async (id: FriendInputDTO) => {
         try {
@@ -90,7 +88,7 @@ export class UserDatabase extends BaseDatabase {
 
     public deleteFriend = async (friend: DelFriendDTO): Promise<void> => {
         try {
-            await FriendDatabase.connection
+            await UserDatabase.connection
                 .delete(friend.friendId)
                 .where("friend", friend.friendId)
                 .into("cookenu_friends")
@@ -99,7 +97,7 @@ export class UserDatabase extends BaseDatabase {
         }
     };
 
-//BUSCA TODOS OS USUARIOS
+    //BUSCA TODOS OS USUARIOS
 
     public getAllUsers = async (): Promise<user[]> => {
         try {
@@ -112,14 +110,16 @@ export class UserDatabase extends BaseDatabase {
         }
     };
 
- //BUSCA RECEITAS DE AMIGOS
+    //BUSCA RECEITAS DE AMIGOS
 
-     public getFeed = async (token:string) => {
+    public getFeed = async (token: string) => {
         try {
-            const result = await UserDatabase.connection("cookenu_users")
-                .select('id', 'name', 'email')
+            const recipe = await RecipeDatabase.connection("cookenu_recipes")
+                .select()
+                .where("author_id", token)
+            const user = await UserDatabase.connection("cookenu_users")
+                .select('name')
                 .where({ id: token })
-            return result[0];
         } catch (error: any) {
             throw new CustomError(400, error.message);
         }

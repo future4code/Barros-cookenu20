@@ -1,14 +1,12 @@
-//import { RecipeRepository } from "../../business/RRepository";
 import { CustomError } from "../../error/customError";
 import { recipe } from "../../model/recipe";
 import { BaseDatabase } from "./BaseDatabase";
-import { UserDatabase } from "./UserDatabase";
 
 export class RecipeDatabase extends BaseDatabase {
 
     //CRIA RECEITA
 
-    public insertRecipe = async (recipe:recipe): Promise<void> => {
+    public insertRecipe = async (recipe: recipe): Promise<void> => {
         try {
             await RecipeDatabase.connection
                 .insert({
@@ -29,7 +27,7 @@ export class RecipeDatabase extends BaseDatabase {
     public getRecipe = async (idRecipe: string): Promise<recipe[]> => {
         try {
             const recipe = await RecipeDatabase.connection
-                .select("id","title", "description","created_at")
+                .select("id", "title", "description", "created_at")
                 .from("cookenu_recipes")
                 .where("author_id", idRecipe)
                 .orderBy("created_at", "desc")
@@ -52,5 +50,4 @@ export class RecipeDatabase extends BaseDatabase {
         }
     };
 
- 
 }

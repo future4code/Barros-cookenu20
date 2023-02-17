@@ -14,6 +14,9 @@ Esse produto nada mais é do que uma rede social, na qual os usuários podem div
 → Criar receitas
 → Seguir usuário
 → Feed
+→ Criar Amizade
+→ Desafazer Amizade
+→ Buscar feed de receitas
 ```
 <br>
 

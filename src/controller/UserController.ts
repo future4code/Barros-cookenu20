@@ -2,8 +2,7 @@ import { Request, Response } from "express";
 import { RecipeBusiness } from "../business/RecipeBusiness";
 import { UserBusiness } from "../business/UserBusiness";
 import { UserDatabase } from "../data/mySQL/UserDatabase";
-import { FriendInputDTO } from "../model/friend";
-import { DelFriendDTO, InputFeedDTO, InputProfileDTO, LoginInputDTO, UserInputDTO } from "../model/user";
+import { DelFriendDTO, FriendInputDTO, InputFeedDTO, InputProfileDTO, LoginInputDTO, UserInputDTO } from "../model/user";
 
 const userBusiness = new UserBusiness
 const userDatabase = new UserDatabase
@@ -11,8 +10,7 @@ const recipeBusiness = new RecipeBusiness
 
 export class UserController {
 
-
-//CRIAR USUARIO
+    //CRIAR USUARIO
 
     public createUser = async (req: Request, res: Response) => {
         try {
@@ -32,7 +30,7 @@ export class UserController {
         }
     };
 
-// LOGIN
+    // LOGIN
 
     public login = async (req: Request, res: Response) => {
         try {
@@ -51,7 +49,7 @@ export class UserController {
         }
     };
 
-// BUSCAR PERFIL
+    // BUSCAR PERFIL
 
     public getProfile = async (req: Request, res: Response) => {
         try {
@@ -75,7 +73,7 @@ export class UserController {
             }
             const users = await userBusiness.getUser(id, input)
 
-            res.status(201).send(users)
+            res.status(200).send(users)
         } catch (error: any) {
             res.status(error.statusCode || 400).send(error.message || error.sqlMessage)
         }
@@ -111,7 +109,7 @@ export class UserController {
             };
 
             await userBusiness.deleteFriend(input, inputFriend);
-            res.status(201).send({ message: "Amizade desfeita!" });
+            res.status(200).send({ message: "Amizade desfeita!" });
         } catch (error: any) {
             res.status(400).send(error.message);
         }
@@ -129,10 +127,10 @@ export class UserController {
 
     public getFeed = async (req: Request, res: Response) => {
         try {
-            const input: InputProfileDTO = {
+            const input: InputFeedDTO = {
                 token: req.headers.authorization as string
             }
-            const user = await userBusiness.getProfile(input)
+            const user = await userBusiness.getFeed(input)
 
             res.status(200).send(user);
         } catch (error: any) {

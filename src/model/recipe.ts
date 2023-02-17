@@ -1,8 +1,3 @@
-enum RECIPE_TYPES {
-   NORMAL = "normal",
-   EVENT = "event"
-}
-
 export type recipe = {
    id: string,
    title: string,
