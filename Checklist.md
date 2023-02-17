@@ -177,8 +177,8 @@ export enum UserRole{
  }
 ```
 
-# [  ] - Readme  !!! Incluir link do deploy
+# [ X ] - Readme  
 
-# [ X ] - Documentação Postman - OK (apenas manter atualizado no Postman)
+# [ X ] - Documentação Postman
 
-# [ _ ] - Deploy
+# [ X ] - Deploy
