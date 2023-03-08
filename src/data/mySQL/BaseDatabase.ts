@@ -14,7 +14,8 @@ export class BaseDatabase {
          database: process.env.DB_NAME,
          port: 3306,
          multipleStatements: true
-      }
+      },
+      pool: { min: 0, max: 50 }
    })
 }
 
