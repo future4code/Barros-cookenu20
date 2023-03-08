@@ -42,6 +42,6 @@ export class Unauthorized extends CustomError{
 
 export class InvaliRole extends CustomError{ 
     constructor(){
-        super(400, "Tipo de usuario invalido inválido")
+        super(400, "Tipo de usuario invalido")
     }
 }

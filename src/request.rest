@@ -5,9 +5,9 @@ POST http://localhost:3306/user/signup
 Content-Type: application/json
 
 {
-    "name": "Tom Cruise",
-    "email": "gala@labenu.com",
-    "password": "123456",
+    "name": "Adrea Teste",
+    "email": "teste@labenu.com",
+    "password": "1111111",
     "role":"NORMAL"
 }
 
