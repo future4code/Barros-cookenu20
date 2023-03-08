@@ -15,7 +15,7 @@ export class BaseDatabase {
          port: 3306,
          multipleStatements: true
       },
-      pool: { min: 0, max: 50 }
+    
    })
 }
 
